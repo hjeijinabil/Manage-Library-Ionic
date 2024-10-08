@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-title>Edit Book</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="saveChanges()" [strong]="true">Save</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="bookForm">
+    <ion-item>
+      <ion-input label="Title" formControlName="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Author" formControlName="author"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="ISBN" formControlName="isbn"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Genre" formControlName="genre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-input label="Publication Date" type="date" formControlName="publishedDate"></ion-input>
+    </ion-item>
+
+    <ion-textarea label="Summary" formControlName="summary"></ion-textarea>
+  </form>
+</ion-content>

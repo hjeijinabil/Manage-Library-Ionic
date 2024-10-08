@@ -1,0 +1,100 @@
+<ion-header [translucent]="true" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="title">Library</ion-title>
+  </ion-toolbar>
+   <!-- Logout Button -->
+   <ion-footer>
+    <ion-toolbar class="ion-text-center">
+      <ion-buttons slot="end">
+        <!-- Add the icon to the button and align it to the right -->
+        <ion-button (click)="logout()" expand="full" color="danger" class="logout-button">
+          <ion-icon slot="start" name="log-out"></ion-icon> <!-- Icon for logout -->
+          Logout
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+  
+
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col sizeLg="4" sizeMd="6" sizeXs="12" *ngFor="let book of books" (click)="openBook(book)">
+        <ion-card class="custom-card">
+          <ion-card-header>
+            <ion-card-title class="title">{{ book.title }}</ion-card-title>
+            <ion-card-subtitle color="secondary">{{ book.author }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="summary">{{ book.summary }}</p>
+          </ion-card-content>
+
+          <!-- Update and Remove Buttons -->
+          <ion-footer>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button color="primary" (click)="openEditModal(book)">
+                  <ion-icon slot="icon-only" name="create"></ion-icon> Update
+                </ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button color="danger" (click)="removeBook(book.id)">
+                  <ion-icon slot="icon-only" name="trash"></ion-icon> Remove
+                </ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-footer>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Modal for Adding or Editing a Book -->
+  <ion-modal #modal [initialBreakpoint]="0.5" [breakpoints]="[0, 0.25, 0.5, 0.75]" trigger="open-modal">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>{{ editMode ? 'Edit Book' : 'Add Book' }}</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-input label="Title" labelPlacement="stacked" type="text" placeholder="Enter title" [(ngModel)]="title"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Author" labelPlacement="stacked" type="text" placeholder="Enter author" [(ngModel)]="author"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="ISBN" labelPlacement="stacked" type="text" placeholder="Enter ISBN" [(ngModel)]="isbn"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Genre" labelPlacement="stacked" type="text" placeholder="Enter genre" [(ngModel)]="genre"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="Publication Date" labelPlacement="stacked" type="date" [(ngModel)]="publicationDate"></ion-input>
+        </ion-item>
+
+        <ion-textarea label="Summary" labelPlacement="stacked" rows="5" [(ngModel)]="summary" placeholder="Enter summary"></ion-textarea>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Floating action button for opening the modal -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="center">
+    <ion-fab-button id="open-modal" color="primary" class="fab-button">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+

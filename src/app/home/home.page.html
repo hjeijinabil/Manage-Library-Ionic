@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title class="header-title">Welcome to Library App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Top Section with Logo and Title -->
+  <div class="top-section">
+    <ion-img class="logo" src="assets/logoo.jpg"></ion-img>
+    <ion-title class="title-text">Explore the World!</ion-title>
+  </div>
+
+  <!-- Card Section for Login, SignUp, and Reset Password -->
+  <ion-card class="action-card">
+    <ion-card-content>
+      <ion-button expand="block" shape="round" color="primary" (click)="logMeIn()">Login</ion-button>
+      <ion-button expand="block" shape="round" color="secondary" (click)="SignUp()">Sign Up</ion-button>
+      <ion-button expand="block" shape="round" fill="outline" (click)="Resetpassword()">Forgot Password</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Floating Action Button -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" style="margin-bottom: 30px;">
+    <ion-fab-button [routerLink]="['/signin']">
+      <ion-icon name="chevron-forward"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
